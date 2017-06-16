@@ -1,4 +1,5 @@
 class PhotosController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_photo, only:[:edit, :update, :destroy]
 
   def index
@@ -6,13 +7,19 @@ class PhotosController < ApplicationController
   end
 
   def new
-    @photo = Photo.new
+    if params[:back]
+      @photo = Photo.new(photos_params)
+    else
+      @photo = Photo.new
+    end
   end
 
   def create
     @photo = Photo.new(photos_params)
+    @photo.user_id = current_user.id
     if @photo.save
       redirect_to photos_path, notice: "作成が完了しました！"
+      NoticeMailer.sendmail_photo(@photo).deliver
     else
       render 'new'
     end
@@ -33,6 +40,7 @@ class PhotosController < ApplicationController
 
   def confirm
     @photo = Photo.new(photos_params)
+    render :new if @photo.invalid?
   end
 
 private

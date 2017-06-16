@@ -1,9 +1,20 @@
-<h3>以下の内容で送信します。</h3>
+<div class="container">
+  <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
+    <h3>以下の内容で送信します。</h3>
 
-<%= form_for(@photo) do |f| %>
-  <%= f.hidden_field :title %>
-  <%= f.hidden_field :content %>
-  <p>タイトル：<%= @photo.title %></p>
-  <p>本文：<%= @photo.content %></p>
-  <%= f.submit "投稿する" %>
-<% end %>
+    <%= form_for(@photo) do |f| %>
+      <%= f.hidden_field :title %>
+      <%= f.hidden_field :content %>
+      <p>タイトル：<%= @photo.title %></p>
+      <p>本文：<%= @photo.content %></p>
+      <%= f.submit "投稿する", class: 'btn btn-primary btn-block' %>
+    <% end %>
+
+    <%= form_for(@photo, url: new_photo_path, method: 'get') do |f| %>
+      <%= f.hidden_field :title %>
+      <%= f.hidden_field :content %>
+      <%= f.submit "戻る",name: 'back', class: 'btn btn-default btn-block' %>
+    <% end %>
+
+  </div>
+</div>
