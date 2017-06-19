@@ -4,7 +4,12 @@
           <%= link_to "写真を投稿する", new_photo_path, class: 'btn btn-default' %>
     <% @photos.each do |photo| %>
       <div class="row">
+        <div class="contributor">
+          <%= profile_img(photo.user) if profile_img(photo.user)%>
+          <%= photo.user.name %>
+        </div>
         <p>タイトル：<%= photo.title %></p>
+        <%= image_tag photo.photo.url %>
         <p>説明：<%= photo.content %></p>
         <%= link_to "編集", edit_photo_path(photo.id),data: { confirm: '本当に編集しますか？'}, class: 'btn btn-default btn-sm btn-success' %>
         <%= link_to "削除", photo_path(photo.id), method: :delete, data: { confirm: '本当に削除しますか？'}, class: 'btn btn-default btn-sm btn btn-danger' %>

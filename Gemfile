@@ -44,8 +44,12 @@ group :development, :test do
 end
 
 group :development do
-    gem 'letter_opener_web'
-    gem 'dotenv-rails'
+  gem 'letter_opener_web'
+  gem 'dotenv-rails'
+  # エラー画面をわかりやすく整形してくれる
+  gem 'better_errors'
+  # better_errorsの画面上にirb/pry(PERL)を表示する
+  gem 'binding_of_caller'
 end
 
   gem 'devise'
@@ -57,3 +61,5 @@ end
   gem 'omniauth'
   gem 'omniauth-twitter'
   gem 'omniauth-facebook'
+  gem 'carrierwave'
+  gem 'mini_magick'

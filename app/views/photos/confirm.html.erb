@@ -4,14 +4,17 @@
 
     <%= form_for(@photo) do |f| %>
       <%= f.hidden_field :title %>
+      <%= f.hidden_field :photo %>
       <%= f.hidden_field :content %>
       <p>タイトル：<%= @photo.title %></p>
+      <p>写真：<%= image_tag @photo.photo.url %></p>
       <p>本文：<%= @photo.content %></p>
       <%= f.submit "投稿する", class: 'btn btn-primary btn-block' %>
     <% end %>
 
     <%= form_for(@photo, url: new_photo_path, method: 'get') do |f| %>
       <%= f.hidden_field :title %>
+      <%= f.hidden_field :photo %>
       <%= f.hidden_field :content %>
       <%= f.submit "戻る",name: 'back', class: 'btn btn-default btn-block' %>
     <% end %>
